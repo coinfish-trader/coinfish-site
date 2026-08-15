@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expected Move: Which Number Is the Real One | Coinfish Blog</title>
+<meta name="description" content="Three ways to calculate the expected move, why they disagree, and what the true expected move actually is. Worked off an IBKR-style option chain.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/coinfish-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .em-formula{background:#10294a;border:1px solid #27425f;border-left:3px solid #1CA9B6;border-radius:10px;padding:18px 22px;margin:22px 0;font-family:'Inter',monospace;font-size:1.02rem;color:#cdd9ea;letter-spacing:.2px;overflow-x:auto}
+  .em-formula b{color:#fff;font-weight:600}
+  .em-cap{display:block;margin:8px 0 26px;font-size:.92rem;color:#7c93b3;font-style:italic}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html">
+      <img src="/coinfish-logo.png" alt="Coinfish">
+      <b>Coin<span>fish</span></b>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="track-record.html">Track Record</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="login.html" class="login-link">Log in</a>
+      <a href="community.html" class="btn">Join the Collective <span class="arrow">&rarr;</span></a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<article>
+  <section class="page-hero bg-navy-grad grid-tex">
+    <img class="hero-creature hero-creature--l" src="art-bull-bear.png" alt="" aria-hidden="true">
+    <img class="hero-creature hero-creature--r" src="art-fish.png" alt="" aria-hidden="true">
+    <div class="wrap article-head" style="position:relative;z-index:2">
+      <span class="eyebrow" style="justify-content:center">Method</span>
+      <h1>Expected move: which number is the real one</h1>
+      <div class="article-meta">
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg> June 22, 2026</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 8 min read</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5m0 14h16M8 16V9m4 7V6m4 10v-4"/></svg> Walkthrough</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-navy" style="padding-top:0">
+    <div class="wrap">
+      <div class="article-hero-img reveal">
+        <img src="post-expected-move-hero.png" alt="Illustrative NVDA option chain showing the at-the-money straddle and three expected-move calculations">
+      </div>
+
+      <div class="article article-body reveal">
+        <p>You open the chain to set up an iron condor, you want your short strikes outside the expected move, and then you realize you are not sure which expected move you mean. Add the two at-the-money options together? Multiply by something? Run the implied volatility formula? Three traders will hand you three different numbers and all three will call it the expected move.</p>
+        <p>They are not wrong. They are answering different questions and using the same name for the answer. Here is what each one is actually measuring, and which one belongs on your chart when you are picking strikes.</p>
+
+        <h2>What the number is trying to tell you</h2>
+        <p>The expected move is the market's pricing of how far a stock travels by a certain date. It is not a forecast of direction and it is not a guarantee. It is the option market saying, given what people are paying for volatility right now, here is the range the stock is likely to stay inside.</p>
+        <p>Every version of the calculation pulls from the same input, implied volatility, just packaged differently. IV is already baked into every option price on the chain, so the move is sitting there in the premiums whether or not your platform prints it for you.</p>
+        <p>A confession first, since it shaped how I think about this. I moved my trading off tastytrade and onto IBKR Desktop a little while back. Tastytrade printed the expected move for you, right on the chain, no work required. IBKR does not, and for the first few weeks that was the feature I missed most. Then I noticed what doing the math by hand actually does to me. It slows me down. Every time I want the number I have to stop, find the at-the-money row, and work it out myself, and that little bit of friction has talked me out of more than one trade I had not really thought through. So I will take the trade off. Convenience is nice. A built-in pause before I commit capital turned out to be worth more.</p>
+        <p>Let me run one name the whole way through. NVDA at 175, the monthly expiration 30 days out, at-the-money implied volatility right around 50 percent. Illustrative numbers, clean enough to follow the math. That is the chain above.</p>
+
+        <h2>Method one: add up the straddle</h2>
+        <p>The fast way, the one most traders eyeball in two seconds. Take the at-the-money call and the at-the-money put for your expiration, add the two mid prices, and that sum is your expected move.</p>
+        <p>On the NVDA chain the 175 call is trading 10.05 and the 175 put 9.95. Add them and the straddle is 20.00. So the market is pricing roughly a 20-point move over those 30 days, in either direction. Spot at 175 gives you a band of about 155 to 195.</p>
+        <p>That is it. No formula, no square roots. The straddle already contains the implied volatility, the days to expiration, and the price of the stock, because all of that is what the options are priced on in the first place. This is the number I reach for first. You can read it straight off the chain in the time it takes to find the at-the-money row.</p>
+
+        <h2>Method two: the implied volatility formula</h2>
+        <p>The textbook version. The one standard deviation move equals the stock price times implied volatility times the square root of days to expiration over 365.</p>
+        <div class="em-formula">Expected move (1 SD) = <b>Spot &#215; IV &#215; &#8730;(DTE / 365)</b></div>
+        <p>Plug in NVDA: 175 &#215; 0.50 &#215; &#8730;(30 / 365) = 175 &#215; 0.50 &#215; 0.2867 = 25.09.</p>
+        <p>So this method says about 25 points, a band of roughly 150 to 200. That is the one standard deviation range, the zone the stock has about a 68 percent chance of finishing inside, assuming a normal distribution of returns (which is itself an assumption, not a law).</p>
+        <p>Now look at what just happened. The straddle gave you 20. The formula gave you 25. Same stock, same expiration, same implied volatility, five points apart. This is where most explanations get sloppy and pick one without telling you why the other is different.</p>
+
+        <h2>Why they disagree, and where 1.25 comes from</h2>
+        <p>The gap is not an error. It is built into the math.</p>
+        <p>An at-the-money straddle, under Black-Scholes, prices out to about 0.8 times a one standard deviation move. Not equal to it, about four-fifths of it. The exact factor is 1 over the square root of 2 pi, doubled, which lands at 0.798. Call it 0.8.</p>
+        <p>So the straddle (20) is roughly 0.8 of the one standard deviation move (25). Flip that around and you get the multiplier people throw around without context:</p>
+        <div class="em-formula"><b>1 SD move = straddle &#215; 1.25</b></div>
+        <p>Because 1 divided by 0.8 is 1.25. The straddle times 1.25 is 20 &#215; 1.25 = 25, which is the formula answer. The two methods agree completely once you know the conversion factor between them. The straddle is the smaller number, the one standard deviation band is the larger number, and 1.25 is the bridge.</p>
+        <p>So when someone asks whether the expected move is "just the straddle" or "the straddle times 1.25," the honest answer is that those are two different measurements, both legitimate, both useful, and the only mistake is using one and thinking you have the other.</p>
+
+        <h2>Then where does 0.85 come from</h2>
+        <p>Here is where it gets genuinely contested, because tastytrade taught a generation of traders a rule that points the opposite direction:</p>
+        <div class="em-formula"><b>Expected move = ATM straddle &#215; 0.85</b></div>
+        <p>That gives 20 &#215; 0.85 = 17. Smaller than the straddle, not larger. If the straddle is 0.8 of a standard deviation and 0.85 of the straddle is even less than that, then this number is nowhere near the one standard deviation band. So what is it?</p>
+        <p>It is a conservative band, and the reasoning behind it is worth understanding even if you never use the exact figure. Implied volatility runs richer than what the stock usually delivers. Option sellers price in a premium for the risk they are taking, so the implied move tends to overstate the move the stock actually makes, on average, over many cycles. The 0.85 haircut is an attempt to shrink the implied range toward the realized one. It is not the textbook standard deviation. It is a "what tends to actually happen" estimate, tuned by people who sell premium for a living and watched the implied number print too wide more often than too narrow.</p>
+        <p>Tastytrade also published a more refined version that smooths across the skew instead of leaning on a single strike:</p>
+        <div class="em-formula"><b>Expected move = (ATM straddle &#215; 0.6) + (1st OTM strangle &#215; 0.3) + (2nd OTM strangle &#215; 0.1)</b></div>
+        <p>On the chain, the first strangle out (180 call plus 170 put) runs about 15.30 and the second (185 call plus 165 put) about 11.60. Weight them: 0.6(20.00) + 0.3(15.30) + 0.1(11.60) = 12.00 + 4.59 + 1.16 = 17.75. It lands right next to the 0.85 number, which is the point. Both are deliberately tighter than the raw straddle.</p>
+
+        <h2>So what is the true expected move</h2>
+        <p>This is the part nobody settles, because the word "expected" is doing two jobs.</p>
+        <p>In plain statistics, the expected value of something is its average. The expected absolute move, the average-sized move the stock makes, works out to about 0.8 of a standard deviation. That is the straddle. The straddle is, almost exactly, the true expected move in the literal sense: the average distance the stock travels. Twenty points.</p>
+        <p>The one standard deviation band is a different statistic. It is not the average move, it is the width of the range that holds the stock 68 percent of the time. That is the 25, the straddle times 1.25.</p>
+        <blockquote>The straddle is the expected move if you mean the average move. The 1.25 version is the expected move if you mean the one standard deviation range. The 0.85 version is neither. Three numbers, three questions, one overloaded word.</blockquote>
+        <p>So both camps are telling the truth and talking past each other. The 0.85 version is a realized-move estimate that survives contact with the market a little better than the implied one does. Pick the number that answers the question you are actually asking.</p>
+
+        <h2>Reading it off an IBKR chain</h2>
+        <p>Since IBKR Desktop will not hand you the number, you build it from the chain.</p>
+        <p>Pull up the option chain for your expiration. Find the strike nearest the current price, that is your at-the-money row. Take the call mid and the put mid at that strike and add them. That is your straddle, your average-move estimate, in one step. Want the one standard deviation band instead, multiply by 1.25. Want the conservative band, take 85 percent of it. Same chain, all three numbers in under a minute.</p>
+        <p>There is a shortcut hiding in the delta column too. The roughly 16-delta call and the roughly 16-delta put sit, by definition, near the edges of the one standard deviation range, because 16 percent in each tail leaves 68 percent in the middle. On the NVDA chain those are close to the 200 call and the 150 put, the same 150-to-200 band the formula gave me, marked on the chain above. If you only want the standard deviation strikes for an iron condor, you can find them by delta without doing any arithmetic at all. Add an Implied Vol column to the chain view in IBKR Desktop if you want to sanity-check the IV the whole thing is built on.</p>
+
+        <h2>How I actually use it</h2>
+        <p>I do not treat any of these as a line the stock cannot cross. Plenty of names blow through their expected move, that is exactly why selling premium pays anything. I use the expected move to size a position and place strikes, not as a fence the price is forbidden to climb.</p>
+        <p>For an iron condor or a credit spread, I want my short strikes at or outside the one standard deviation band, so the 25-point version is the one I care about, and I find it fastest through the 16-delta strikes. When I am thinking about how much a position can realistically move against me before I manage it, I go back to the straddle, the average-move number, because most moves are average moves, not standard deviation moves. The 0.85 band is my gut check, the reminder that the implied number is usually a little fat and the stock often does less than the chain is charging for.</p>
+        <p>Knowing which number you are holding is the whole game. A condor built off the average-move band is a tighter, more aggressive trade than you think you put on, because you reached for the standard deviation range and grabbed the straddle by mistake. I have made that exact mistake. Read the chain, name the number, then pick the strikes.</p>
+
+        <div class="author-row">
+          <div class="av">W</div>
+          <div>
+            <b>William, Coinfish</b>
+            <span>Trading the process, wins and losses in the open.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-panel" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Want the full framework?</h2>
+        <p class="lead">Grab the free Options Playbook, the same defined-risk approach behind breakdowns like this one.</p>
+        <div class="hero-actions">
+          <a href="playbook.html" class="btn">Get the free Playbook <span class="arrow">&rarr;</span></a>
+          <a href="community.html" class="btn btn--ghost">Join the Collective</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-about">
+        <a class="brand" href="index.html">
+          <img src="/coinfish-logo.png" alt="Coinfish">
+          <b>Coin<span>fish</span></b>
+        </a>
+        <p>Coinfish Trading Company. Teaching everyday people to trade options with a repeatable, defined-risk process. Trade with purpose.</p>
+        <div class="socials">
+          <a href="#" aria-label="X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.5 7.4L22 22h-6l-4.7-6.1L5.9 22H3l7-8L2 2h6.2l4.2 5.6L18.2 2z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.4-.4-5c-.2-.9-.9-1.6-1.8-1.8C19 4.8 12 4.8 12 4.8s-7 0-8.8.4C2.3 5.4 1.6 6.1 1.4 7 1 8.6 1 12 1 12s0 3.4.4 5c.2.9.9 1.6 1.8 1.8 1.8.4 8.8.4 8.8.4s7 0 8.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-5 .4-5zM10 15.5v-7l6 3.5-6 3.5z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="track-record.html">Track Record</a></li>
+          <li><a href="resources.html">Resources</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get Started</h4>
+        <ul>
+          <li><a href="start-here.html">Start Here</a></li>
+          <li><a href="purpose.html">Purpose Statement</a></li>
+          <li><a href="playbook.html">Free Options Playbook</a></li>
+          <li><a href="community.html">Join the Collective</a></li>
+          <li><a href="login.html">Member Log In</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="disclaimer.html">Risk Disclaimer</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="disclaimer">Coinfish Trading Company LLC is an educational brand. Nothing on this site is financial, investment, or tax advice, and nothing here is a recommendation to buy or sell any security. Options involve substantial risk and are not suitable for every investor. Past performance does not guarantee future results. You are responsible for your own trading decisions.</p>
+    <div class="foot-bottom">
+      <span>&copy; <span id="year">2026</span> Coinfish Trading Company LLC. All rights reserved.</span>
+      <span class="foot-legal-line"><a href="disclaimer.html">Disclaimer</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span>
+      <span>Trade With Purpose.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

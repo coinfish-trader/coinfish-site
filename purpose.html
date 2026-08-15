@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Purpose Statement | Coinfish Trading Company</title>
+<meta name="description" content="Why Coinfish exists and who it is built for: the working parent trading hours for a paycheck, looking for a way to stop.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/coinfish-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&family=Spectral:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Purpose statement page. All selectors scoped to .purpose so the shared
+     site header, nav and footer keep their own styles from styles.css. */
+
+  .purpose{ background:var(--navy-900); color:#C3D2E0; line-height:1.7; }
+  .purpose .wrap{ max-width:980px; margin:0 auto; padding:0 clamp(20px,5vw,64px); }
+
+  .purpose h1,
+  .purpose h2,
+  .purpose h3,
+  .purpose .eyebrow{ font-family:'Inter',sans-serif; margin:0; }
+
+  .purpose .grad{
+    background:linear-gradient(100deg,var(--teal-bright),var(--gold-bright));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+
+  .purpose .eyebrow{
+    font-size:0.72rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:0.22em; color:var(--teal-bright);
+    display:flex; align-items:center; gap:10px; margin-bottom:18px;
+  }
+  .purpose .eyebrow::before{ content:""; width:16px; height:2px; background:var(--gold); flex:none; }
+
+  /* HERO */
+  .purpose .p-hero{
+    position:relative; overflow:hidden;
+    background:linear-gradient(180deg,var(--navy) 0%,var(--navy-900) 100%);
+    padding:clamp(64px,10vw,110px) 0 clamp(56px,8vw,88px);
+    border-bottom:1px solid var(--hairline);
+  }
+  .purpose .p-hero::before{
+    content:""; position:absolute; top:-30%; right:-10%;
+    width:70%; height:120%; border-radius:50%;
+    background:radial-gradient(circle,rgba(28,169,182,0.28) 0%,transparent 65%);
+    pointer-events:none;
+  }
+  .purpose .p-hero .wrap{ position:relative; z-index:1; }
+  .purpose .p-hero h1{
+    font-size:clamp(2.3rem,6vw,4rem); font-weight:600;
+    letter-spacing:-0.02em; line-height:1.08; color:var(--white); margin-bottom:22px;
+  }
+  .purpose .lede{
+    font-family:'Spectral',serif; font-style:italic;
+    font-size:clamp(1.15rem,2.4vw,1.4rem);
+    color:#DCE6F0; max-width:60ch; line-height:1.55; margin:0;
+  }
+  .purpose .tagline{
+    margin-top:34px; padding-top:26px; border-top:1px solid var(--hairline);
+    font-family:'Inter',sans-serif; font-size:0.72rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.28em; color:var(--gold);
+  }
+
+  /* SECTIONS */
+  .purpose .p-sec{ padding:clamp(52px,7vw,84px) 0; }
+  .purpose .bg-panel{ background:var(--navy-800); border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline); }
+
+  .purpose h2{
+    font-size:clamp(1.7rem,3.6vw,2.5rem); font-weight:600;
+    letter-spacing:-0.02em; color:var(--white); line-height:1.15; margin-bottom:24px;
+  }
+  .purpose h3{ font-size:1.15rem; font-weight:600; color:var(--white); margin-bottom:10px; }
+  .purpose p{ margin:0 0 18px; max-width:68ch; }
+  .purpose p:last-child{ margin-bottom:0; }
+  .purpose strong{ color:var(--white); font-weight:600; }
+
+  /* SCRIPTURE */
+  .purpose .scripture{ border-left:2px solid var(--gold); padding:6px 0 6px 26px; margin:30px 0; max-width:64ch; }
+  .purpose .scripture q{
+    font-family:'Spectral',serif; font-style:italic; font-size:1.2rem;
+    color:#E4ECF4; line-height:1.6; display:block; quotes:none;
+  }
+  .purpose .scripture cite{
+    display:block; margin-top:12px; font-family:'Inter',sans-serif;
+    font-style:normal; font-size:0.72rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.18em; color:var(--teal);
+  }
+  .purpose .attribution{
+    margin-top:34px; padding-top:22px; border-top:1px solid var(--hairline);
+    font-size:0.78rem; color:#8FA3B8; max-width:none;
+  }
+
+  /* TWO COLUMN */
+  .purpose .cols{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:36px; }
+  .purpose .col{ background:rgba(255,255,255,0.03); border:1px solid var(--hairline); border-radius:14px; padding:28px 26px; }
+  .purpose .col.is-for{ border-top:2px solid var(--teal); }
+  .purpose .col.is-not{ border-top:2px solid rgba(232,80,91,0.7); }
+  .purpose .col h3{ margin-bottom:16px; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.16em; }
+  .purpose .col.is-for h3{ color:var(--teal-bright); }
+  .purpose .col.is-not h3{ color:#E8505B; }
+  .purpose .col ul{ list-style:none; margin:0; padding:0; }
+  .purpose .col li{
+    padding:9px 0 9px 22px; position:relative;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+    font-size:0.95rem; line-height:1.55;
+  }
+  .purpose .col li:last-child{ border-bottom:none; }
+  .purpose .col li::before{ content:""; position:absolute; left:0; top:17px; width:6px; height:6px; border-radius:50%; }
+  .purpose .col.is-for li::before{ background:var(--teal); }
+  .purpose .col.is-not li::before{ background:#E8505B; }
+
+  /* PHASES */
+  .purpose .phases{ display:grid; gap:20px; margin-top:40px; }
+  .purpose .phase{
+    background:var(--navy-700); border:1px solid var(--hairline);
+    border-radius:14px; padding:32px 30px; position:relative; overflow:hidden;
+  }
+  .purpose .phase::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg,var(--teal-bright),var(--gold-bright));
+  }
+  .purpose .phase-head{ display:flex; align-items:baseline; gap:18px; margin-bottom:16px; flex-wrap:wrap; }
+  .purpose .phase-num{
+    font-family:'Inter',sans-serif; font-size:2.6rem; font-weight:700;
+    line-height:1; flex:none;
+    background:linear-gradient(100deg,var(--teal-bright),var(--gold-bright));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .purpose .phase-title{ font-family:'Inter',sans-serif; font-size:1.35rem; font-weight:600; color:var(--white); letter-spacing:-0.01em; }
+  .purpose .phase-label{
+    font-size:0.68rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:0.2em; color:#8FA3B8; display:block; margin-bottom:4px;
+  }
+  .purpose .phase p{ font-size:0.97rem; }
+  .purpose .phase .scripture{ margin:22px 0 0; }
+  .purpose .phase .scripture q{ font-size:1.05rem; }
+
+  .purpose .list-label{
+    display:block; font-family:'Inter',sans-serif; font-size:0.68rem;
+    font-weight:700; text-transform:uppercase; letter-spacing:0.2em;
+    color:var(--teal); margin:26px 0 12px;
+  }
+  .purpose .phase-list{ list-style:none; margin:0; padding:0; }
+  .purpose .phase-list li{
+    position:relative; padding:8px 0 8px 24px; font-size:0.94rem;
+    line-height:1.55; border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .purpose .phase-list li:last-child{ border-bottom:none; }
+  .purpose .phase-list li::before{ content:""; position:absolute; left:2px; top:16px; width:8px; height:1px; background:var(--gold); }
+
+  .purpose .debt-split{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:26px 0 0; }
+  .purpose .debt-card{ border:1px solid var(--hairline); border-radius:10px; padding:20px 22px; background:rgba(0,0,0,0.20); }
+  .purpose .debt-card.bad{ border-left:2px solid #E8505B; }
+  .purpose .debt-card.ok{ border-left:2px solid var(--teal); }
+  .purpose .debt-card h4{
+    font-family:'Inter',sans-serif; font-size:0.68rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.18em; margin:0 0 10px;
+  }
+  .purpose .debt-card.bad h4{ color:#E8505B; }
+  .purpose .debt-card.ok h4{ color:var(--teal-bright); }
+  .purpose .debt-card p{ font-size:0.9rem; line-height:1.55; margin:0; max-width:none; }
+  .purpose .debt-test{
+    margin:20px 0 0; padding-left:2px;
+    font-family:'Spectral',serif; font-style:italic;
+    font-size:1.05rem; color:#E4ECF4; line-height:1.55;
+  }
+
+  .purpose .rule-box{
+    margin:26px 0 0; padding:22px 24px;
+    background:rgba(212,175,55,0.07);
+    border:1px solid rgba(212,175,55,0.30); border-radius:10px;
+  }
+  .purpose .rule-box .rule-label{
+    display:block; font-family:'Inter',sans-serif; font-size:0.68rem;
+    font-weight:700; text-transform:uppercase; letter-spacing:0.2em;
+    color:var(--gold); margin-bottom:10px;
+  }
+  .purpose .rule-box p{ font-size:0.95rem; color:#E4ECF4; margin-bottom:14px; }
+  .purpose .rule-box p:last-child{ margin-bottom:0; }
+
+  /* PATIENCE */
+  .purpose .patience{ background:linear-gradient(180deg,var(--navy) 0%,var(--navy-900) 100%); position:relative; overflow:hidden; }
+  .purpose .patience::before{
+    content:""; position:absolute; bottom:-40%; left:-10%;
+    width:60%; height:120%; border-radius:50%;
+    background:radial-gradient(circle,rgba(212,175,55,0.13) 0%,transparent 65%);
+    pointer-events:none;
+  }
+  .purpose .patience .wrap{ position:relative; z-index:1; }
+
+  /* CLOSING */
+  .purpose .closing{
+    border-top:1px solid var(--hairline-strong);
+    padding:clamp(48px,6vw,72px) 0 clamp(56px,7vw,80px);
+    text-align:center; background:var(--navy-900);
+  }
+  .purpose .closing .mark{
+    font-family:'Inter',sans-serif; font-size:clamp(1.9rem,4.5vw,2.8rem);
+    font-weight:700; letter-spacing:-0.02em; margin-bottom:14px;
+  }
+  .purpose .closing .mark .coin{ color:var(--white); }
+  .purpose .closing .mark .fish{ color:var(--gold); }
+  .purpose .closing .sub{
+    font-family:'Inter',sans-serif; font-size:0.72rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.28em; color:var(--teal);
+  }
+  .purpose .closing .note{ margin:30px auto 0; max-width:56ch; font-size:0.95rem; color:#8FA3B8; }
+  .purpose .closing .attribution{ margin-left:auto; margin-right:auto; max-width:70ch; }
+
+  @media (max-width:760px){
+    .purpose .cols{ grid-template-columns:1fr; }
+    .purpose .debt-split{ grid-template-columns:1fr; }
+    .purpose .phase-num{ font-size:2.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html">
+      <img src="/coinfish-logo.png" alt="Coinfish">
+      <b>Coin<span>fish</span></b>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="track-record.html">Track Record</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="login.html" class="login-link">Log in</a>
+      <a href="community.html" class="btn">Join the Collective <span class="arrow">&rarr;</span></a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="purpose">
+
+<section class="p-hero">
+  <div class="wrap">
+    <div class="eyebrow">Purpose Statement</div>
+    <h1>Why <span class="grad">Coinfish</span> exists,<br>and who it is built for.</h1>
+    <p class="lede">For the working parent who is building someone else's business, trading hours for a paycheck, and looking for a way to stop.</p>
+    <div class="tagline">Trade With Purpose</div>
+  </div>
+</section>
+
+<section class="p-sec">
+  <div class="wrap">
+    <div class="eyebrow">The Name</div>
+    <h2>A coin in a fish's mouth</h2>
+
+    <p>The temple tax collectors came to Peter and asked whether his teacher paid the tax. Jesus told him to go to the sea, throw in a hook, and open the mouth of the first fish he caught.</p>
+
+    <div class="scripture">
+      <q>However, not to give offense to them, go to the sea and cast a hook and take the first fish that comes up, and when you open its mouth you will find a shekel. Take that and give it to them for me and for yourself.</q>
+      <cite>Matthew 17:27 ESV</cite>
+    </div>
+
+    <p>Three things in that passage built this company.</p>
+
+    <p><strong>The provision came through Peter's own trade.</strong> He was a fisherman, and he was told to go fishing. The answer arrived inside the work he already knew how to do, not around it.</p>
+
+    <p><strong>He still had to cast the hook.</strong> Nothing was handed to him on the shore. He was given a method and he had to go execute it.</p>
+
+    <p><strong>The coin covered two people, not one.</strong> It was worth exactly two temple taxes, and Jesus was specific about where it went. For me and for yourself. The provision was never sized for a single man keeping it to himself.</p>
+  </div>
+</section>
+
+<section class="p-sec bg-panel">
+  <div class="wrap">
+    <div class="eyebrow">The Who</div>
+    <h2>Peter is the guy still trading time for money</h2>
+
+    <p>He works hard. He builds someone else's business every day and he is good at it. He is not lazy, not reckless, not looking for a shortcut. He is running the math on the drive home and finding that the numbers barely move no matter how many hours he puts in.</p>
+
+    <p>He wants a second stream of income that does not require selling more of his life by the hour. He wants his kids and their kids to inherit something other than the same trap. He is not chasing a lifestyle, he is trying to get free.</p>
+
+    <div class="scripture">
+      <q>A good man leaves an inheritance to his children's children, but the wealth of the sinner is stored up for the righteous.</q>
+      <cite>Proverbs 13:22 ESV</cite>
+    </div>
+
+    <div class="cols">
+      <div class="col is-for">
+        <h3>Built for</h3>
+        <ul>
+          <li>Working parents with a full-time job and a family at home</li>
+          <li>People who cannot watch a screen during market hours</li>
+          <li>Anyone carrying debt who wants to learn now and deploy capital later</li>
+          <li>Patient builders who understand compounding takes years</li>
+          <li>People who want a legacy that outlives them</li>
+        </ul>
+      </div>
+      <div class="col is-not">
+        <h3>Not built for</h3>
+        <ul>
+          <li>Anyone looking to get rich quickly</li>
+          <li>People trading money they cannot afford to lose</li>
+          <li>Lifestyle chasers funding exotic cars, luxury goods or appearances</li>
+          <li>Traders who want signals handed to them without learning why</li>
+          <li>Anyone who is not ready to be honest about their losses</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-sec">
+  <div class="wrap">
+    <div class="eyebrow">The Path</div>
+    <h2>Three phases, in order</h2>
+    <p>The order matters more than the speed. What moves between phases is capital, not knowledge, so the learning starts on day one and costs nothing. What waits is the money.</p>
+
+    <p>Most of the damage in this business happens to people who put real capital to work before their balance sheet could survive a losing month. That is the mistake these phases exist to prevent.</p>
+
+    <div class="phases">
+
+      <div class="phase">
+        <div class="phase-head">
+          <div class="phase-num">01</div>
+          <div>
+            <span class="phase-label">Foundation</span>
+            <div class="phase-title">Get out of debt while you learn the craft</div>
+          </div>
+        </div>
+
+        <p>Nothing compounds while you are paying someone else's interest first. Capital that is already promised to a lender cannot absorb a loss and cannot wait out a bad month, which means the bad debt comes down and the reserve gets funded before a dollar goes into a live position.</p>
+
+        <p><strong>Not all debt is the same, and pretending otherwise would put this phase out of reach for almost everybody.</strong> The distinction we care about is what the interest is actually buying.</p>
+
+        <div class="debt-split">
+          <div class="debt-card bad">
+            <h4>Bad debt &middot; clear it</h4>
+            <p>Credit cards, personal loans, buy now pay later, payday lending, and financing on a vehicle that loses value while you pay for it. High interest charged on things you have already consumed. This is the debt that has to go before capital goes to work.</p>
+          </div>
+          <div class="debt-card ok">
+            <h4>Strategic debt &middot; manageable</h4>
+            <p>A mortgage on the home you live in, or borrowing to acquire an asset that appreciates or produces income, at a payment you can service comfortably. This does not disqualify you from phase two, though it does shape how much risk you carry.</p>
+          </div>
+        </div>
+
+        <p class="debt-test">Ask what the interest is buying. If it is paying for something you already used up, clear it. If it is holding an asset that grows or produces, it can stay.</p>
+
+        <div class="scripture">
+          <q>The rich rules over the poor, and the borrower is the slave of the lender.</q>
+          <cite>Proverbs 22:7 ESV</cite>
+        </div>
+
+        <p><strong>This phase is not a waiting room. It is the classroom.</strong> Every mechanic, every strategy, every platform walkthrough, every trade recap is open to you now and costs nothing. You do not need permission or capital to start learning, and the years you spend paying off debt are the years you should be building the knowledge, because the two run on the same clock.</p>
+
+        <p>There is a real advantage buried in this. Nobody learns anything true about risk while they are frightened, and a person with nothing at stake will actually follow the process long enough to find out whether it works. By the time your money shows up, the flinching is already out of your system.</p>
+
+        <span class="list-label">What phase one actually looks like</span>
+        <ul class="phase-list">
+          <li>Read the blog library front to back, at no cost, and keep rereading it</li>
+          <li>Learn the mechanics of credit spreads and iron condors before you ever place one</li>
+          <li>Paper trade the exact process you intend to run later, at the size you intend to run it</li>
+          <li>Journal every entry, exit, and adjustment as though the money were real</li>
+          <li>Attack the bad debt with the same consistency you will later bring to the account</li>
+          <li>Build the reserve that lets you survive a losing month without selling anything</li>
+        </ul>
+
+        <div class="scripture">
+          <q>Prepare your work outside; get everything ready for yourself in the field, and after that build your house.</q>
+          <cite>Proverbs 24:27 ESV</cite>
+        </div>
+
+        <div class="rule-box">
+          <span class="rule-label">The line we hold</span>
+          <p>Paper only. No live capital until the bad debt is cleared and the reserve is funded, and we will keep saying it after it stops being welcome. A mortgage does not hold you here. A stack of credit cards does.</p>
+          <p>Here is the part nobody tells you: a small account traded hard to escape debt faster is the most common way debt gets worse. The temptation shows up on the weeks you are furthest behind, dressed up as urgency. Learn now, deploy later, and let the boring math do the work it is actually good at.</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">
+          <div class="phase-num">02</div>
+          <div>
+            <span class="phase-label">Accumulation</span>
+            <div class="phase-title">Build a second stream, little by little</div>
+          </div>
+        </div>
+        <p>Defined risk, repeatable mechanics, small size held consistently. The goal here is a second income that arrives without another hour sold, built on a process you can run in twenty minutes before the open and ten after the close, because you have a job and it is not this one yet.</p>
+        <p>Boring months are the objective. The traders who last are the ones whose results look unremarkable for a long time and then do not.</p>
+
+        <span class="list-label">What phase two actually looks like</span>
+        <ul class="phase-list">
+          <li>Start small, with money you could lose entirely without changing anything at home</li>
+          <li>Defined risk on every position, with the loss known before the trade is placed</li>
+          <li>The same routine every day, twenty minutes before the open and ten after the close</li>
+          <li>Same size and same rules through winning months and losing ones</li>
+          <li>Profits reinvested rather than spent, for longer than feels reasonable</li>
+        </ul>
+
+        <div class="scripture">
+          <q>Wealth gained hastily will dwindle, but whoever gathers little by little will increase it.</q>
+          <cite>Proverbs 13:11 ESV</cite>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">
+          <div class="phase-num">03</div>
+          <div>
+            <span class="phase-label">Freedom</span>
+            <div class="phase-title">Time freedom, then legacy</div>
+          </div>
+        </div>
+        <p>When the second stream covers what the first one used to, the trade stops being about income and starts being about time. That is the point where a man gets his calendar back, gives his kids his attention instead of his exhaustion, and keeps building because the compounding is finally working for the generation behind him.</p>
+        <p>Legacy is the last phase for a reason. You cannot leave an inheritance out of a paycheck you already spent.</p>
+
+        <span class="list-label">What phase three actually looks like</span>
+        <ul class="phase-list">
+          <li>The second stream covers what the first one used to cover</li>
+          <li>Time comes back to you before the money ever looks impressive</li>
+          <li>The account compounds without needing new contributions from your labor</li>
+          <li>Your kids learn the process from you, at the kitchen table, years before they need it</li>
+          <li>What you built keeps working after you stop</li>
+        </ul>
+
+        <div class="scripture">
+          <q>The plans of the diligent lead surely to abundance, but everyone who is hasty comes only to poverty.</q>
+          <cite>Proverbs 21:5 ESV</cite>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="p-sec patience">
+  <div class="wrap">
+    <div class="eyebrow">The Pace</div>
+    <h2>This is a marathon, and the finish line is a generation away</h2>
+
+    <p>Every promise of fast money in this industry is a promise made by someone who gets paid whether you win or not. The math that actually works is slow enough to be unglamorous, and slow is the feature. A steady rate held through good markets and bad will beat a spectacular year followed by a blown account, and it does not require you to be right very often.</p>
+
+    <p>The hard part is not the strategy. It is staying at the same pace when the account is small and nothing appears to be happening, which is most of the first few years.</p>
+
+    <div class="scripture">
+      <q>And let us not grow weary of doing good, for in due season we will reap, if we do not give up.</q>
+      <cite>Galatians 6:9 ESV</cite>
+    </div>
+
+    <p>The farmer waits for the early and the latter rain, and the waiting is not wasted time. It is the crop being made. Patience here is not passivity, it is the discipline of doing the same small correct thing for years while the results are still too small to show anyone.</p>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <div class="mark"><span class="coin">Coin</span><span class="fish">fish</span></div>
+    <div class="sub">Trade With Purpose</div>
+    <p class="note">If you are carrying debt, start there, and start learning today. The education costs nothing while you get free. We are willing to tell you it is not time yet, and that is exactly why you can believe us when we tell you it is.</p>
+    <p class="attribution">Scripture quotations are from the ESV Bible (The Holy Bible, English Standard Version), copyright &copy; 2001 by Crossway, a publishing ministry of Good News Publishers. Used by permission. All rights reserved.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-about">
+        <a class="brand" href="index.html">
+          <img src="/coinfish-logo.png" alt="Coinfish">
+          <b>Coin<span>fish</span></b>
+        </a>
+        <p>Coinfish Trading Company. Teaching everyday people to trade options with a repeatable, defined-risk process. Trade with purpose.</p>
+        <div class="socials">
+          <a href="#" aria-label="X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.5 7.4L22 22h-6l-4.7-6.1L5.9 22H3l7-8L2 2h6.2l4.2 5.6L18.2 2z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.4-.4-5c-.2-.9-.9-1.6-1.8-1.8C19 4.8 12 4.8 12 4.8s-7 0-8.8.4C2.3 5.4 1.6 6.1 1.4 7 1 8.6 1 12 1 12s0 3.4.4 5c.2.9.9 1.6 1.8 1.8 1.8.4 8.8.4 8.8.4s7 0 8.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-5 .4-5zM10 15.5v-7l6 3.5-6 3.5z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="track-record.html">Track Record</a></li>
+          <li><a href="resources.html">Resources</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get Started</h4>
+        <ul>
+          <li><a href="start-here.html">Start Here</a></li>
+          <li><a href="purpose.html">Purpose Statement</a></li>
+          <li><a href="playbook.html">Free Options Playbook</a></li>
+          <li><a href="community.html">Join the Collective</a></li>
+          <li><a href="login.html">Member Log In</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="disclaimer.html">Risk Disclaimer</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="disclaimer">Coinfish Trading Company LLC is an educational brand. Nothing on this site is financial, investment, or tax advice, and nothing here is a recommendation to buy or sell any security. Options involve substantial risk and are not suitable for every investor. Past performance does not guarantee future results. You are responsible for your own trading decisions.</p>
+    <div class="foot-bottom">
+      <span>&copy; <span id="year">2026</span> Coinfish Trading Company LLC. All rights reserved.</span>
+      <span class="foot-legal-line"><a href="disclaimer.html">Disclaimer</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span>
+      <span>Trade With Purpose.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Credit Spreads, Explained Without the Jargon | Coinfish Blog</title>
+<meta name="description" content="What a credit spread actually is, in plain language. The two versions, the four numbers that matter, and how I place and manage them in IBKR. Worked on SPY.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/coinfish-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .article-fig{margin:32px 0}
+  .article-fig img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid #27425f}
+  .article-fig figcaption{margin-top:10px;font-size:.9rem;color:#7c93b3;font-style:italic;text-align:center}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html">
+      <img src="/coinfish-logo.png" alt="Coinfish">
+      <b>Coin<span>fish</span></b>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="track-record.html">Track Record</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="login.html" class="login-link">Log in</a>
+      <a href="community.html" class="btn">Join the Collective <span class="arrow">&rarr;</span></a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<article>
+  <section class="page-hero bg-navy-grad grid-tex">
+    <img class="hero-creature hero-creature--l" src="art-bull-bear.png" alt="" aria-hidden="true">
+    <img class="hero-creature hero-creature--r" src="art-fish.png" alt="" aria-hidden="true">
+    <div class="wrap article-head" style="position:relative;z-index:2">
+      <span class="eyebrow" style="justify-content:center">Strategy</span>
+      <h1>Credit spreads, explained without the jargon</h1>
+      <div class="article-meta">
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg> June 28, 2026</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 8 min read</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5m0 14h16M8 16V9m4 7V6m4 10v-4"/></svg> Strategy</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-navy" style="padding-top:0">
+    <div class="wrap">
+      <div class="article-hero-img reveal">
+        <img src="post-credit-spreads-hero.png" alt="Illustrative SPY option chain marking a put credit spread below price and a call credit spread above price">
+      </div>
+
+      <div class="article article-body reveal">
+        <p>Most explanations of credit spreads lose you in the first thirty seconds. They open with delta and theta and a Greek alphabet you did not sign up for, and by the time they get to what the trade actually does, you have already decided options are not for you. I did the same thing the first time someone tried to teach me. So let me strip it all the way down and build it back up with one example, no jargon wall.</p>
+        <p>Here is the whole idea in one sentence. A credit spread is a bet that a stock will not get past a certain price by a certain date, and you get paid up front to make it.</p>
+        <p>That is it. The rest is just learning to read the numbers.</p>
+
+        <h2>Getting paid instead of paying</h2>
+        <p>When you buy an option, you pay money and you need the stock to move, and to move enough, and to move soon, or the clock eats you alive. Most options that get bought expire worthless. That is not a knock on anyone, it is just what the data says happens.</p>
+        <p>A credit spread puts you on the other side of that. Instead of paying for a move, you collect cash for being willing to take a defined risk, and time decay works in your favor instead of against you. You do not need the stock to go anywhere. You need it to stay on the right side of a line you picked. Up a little, down a little, sideways, all of those can win.</p>
+        <p>The word "credit" just means money lands in your account the moment you open the trade. The word "spread" means you are doing two things at once, selling one option and buying another as a seatbelt. The one you sell is where the income comes from. The one you buy is what caps your loss if you are wrong, so a bad day stays a bruise instead of a catastrophe.</p>
+
+        <h2>The bullish version: a put credit spread</h2>
+        <p>Say SPY is trading at 600 and I think it holds up over the next month, or at least does not fall apart. I do not need it to rally. I just need it to stay above a level.</p>
+        <p>So I look below the current price and I sell a put, then I buy a cheaper put further below it for protection. The chain at the top of this post marks both spreads, all four strikes at once.</p>
+        <p>On that chain I sell the 585 put for 4.00 and buy the 575 put for 2.00. The difference, 2.00, is my credit. Since one option contract covers 100 shares, that is 200 dollars landing in my account today.</p>
+        <p>Now the four numbers that run the whole trade.</p>
+        <p>The credit is 2.00, or 200 dollars, and that is the most I can make. If SPY is sitting anywhere above 585 when these expire, both puts expire worthless, I keep the 200, and the trade is done.</p>
+        <p>The width between my strikes is 10 points, which is 1000 dollars of capital at stake. My max loss is that width minus the credit I already collected, so 1000 minus 200, which is 800 dollars. That is the worst case, and I knew it before I ever clicked the button.</p>
+        <p>My breakeven is the short strike minus the credit, 585 minus 2.00, which is 583. So SPY can actually drift down to 583, below where I sold, and I still do not lose money. That cushion is the part most beginners miss. You can be a little wrong and still win.</p>
+
+        <figure class="article-fig reveal">
+          <img src="credit-spreads-payoff.png" alt="Put credit spread payoff at expiration: max profit of 200 dollars above 585, breakeven at 583, max loss of 800 dollars below 575">
+          <figcaption>The shape every credit spread makes: a capped win above the short strike, a capped loss below the long strike, a cushion of room in between.</figcaption>
+        </figure>
+
+        <h2>The bearish version: a call credit spread</h2>
+        <p>Flip the whole thing over and you have the other side. Now I think SPY will not push much higher, so I work above the price instead of below it.</p>
+        <p>I sell a call above the current price and buy a cheaper call further above it for protection. Same structure, opposite direction. I sell the 615 call for 4.00 and buy the 625 call for 2.00. Credit of 2.00 again, 200 dollars in the account.</p>
+        <p>The math mirrors the put side exactly. Max profit is the 200 credit, which I keep if SPY finishes anywhere below 615. The width is 10 points, so max loss is 1000 minus 200, or 800 dollars. Breakeven is the short strike plus the credit, 615 plus 2.00, which is 617. SPY can climb a bit past where I sold and I am still fine.</p>
+        <p>One sells when you lean bullish or neutral. The other sells when you lean bearish or neutral. Neither one needs you to nail the direction. They need you to be right about a line the stock will not cross.</p>
+
+        <h2>Why the bought option matters</h2>
+        <p>You might be wondering why I bother buying that second option at all. Selling the put or call by itself, naked, collects more money. The answer is the reason I sleep at night.</p>
+        <p>A naked short option has a loss that runs much further than the premium you took in, and on the wrong day that bill can dwarf the account. The option I buy puts a hard floor under the damage. It costs me some of my credit, sure, but it turns an open-ended risk into a number I can point to before I enter. Every position I hold has a known worst case. That is not a preference, it is the rule the whole Coinfish approach is built on.</p>
+
+        <h2>Stack them and you have an iron condor</h2>
+        <p>Here is where it gets fun. Run the put credit spread below the price and the call credit spread above it at the same time, on the same underlying, same expiration, and you have built an iron condor.</p>
+        <p>Now I collect both credits, 400 dollars in this example, and I keep all of it as long as SPY finishes anywhere between 585 and 615. A wide quiet zone where I win, defined risk on both wings. That is a post of its own, and I will write it, but you just learned the two halves it is made of.</p>
+
+        <h2>How I actually place and manage them</h2>
+        <p>In IBKR Desktop I build these in Strategy Builder so both legs go in as one order. I click the bid at the strike I want to sell and the ask at the strike I want to buy, the platform names the combo, and I send it as a single ticket at the mid price. One fill, one defined-risk position.</p>
+        <p>A few things I hold to. I sell about 30 to 45 days out, where time decay is meaty but the trade is not yet a coin flip into expiration. I put my short strikes outside the expected move. The whole reason I wrote <a href="post-expected-move.html">this post</a>, so the stock has to do something real to threaten me. And I do not ride these to zero. When a spread has handed me most of what it is going to, somewhere around half the max profit, I close it and free up the capital instead of squeezing the last few dollars and carrying the risk for them.</p>
+        <p>The losers are part of it. A spread goes against me, the stock breaks my line, and I either manage it or take the defined loss I signed up for. I post those here the same as the winners, because a strategy you only see win is a strategy you do not actually understand yet.</p>
+        <p>Read the line before you sell against it. Know your four numbers before you click. Then let the clock do the work it does whether you are watching or not.</p>
+
+        <div class="author-row">
+          <div class="av">W</div>
+          <div>
+            <b>William, Coinfish</b>
+            <span>Trading the process, wins and losses in the open.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-panel" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Want the full framework?</h2>
+        <p class="lead">Grab the free Options Playbook, the same defined-risk approach behind breakdowns like this one.</p>
+        <div class="hero-actions">
+          <a href="playbook.html" class="btn">Get the free Playbook <span class="arrow">&rarr;</span></a>
+          <a href="community.html" class="btn btn--ghost">Join the Collective</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-about">
+        <a class="brand" href="index.html">
+          <img src="/coinfish-logo.png" alt="Coinfish">
+          <b>Coin<span>fish</span></b>
+        </a>
+        <p>Coinfish Trading Company. Teaching everyday people to trade options with a repeatable, defined-risk process. Trade with purpose.</p>
+        <div class="socials">
+          <a href="#" aria-label="X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.5 7.4L22 22h-6l-4.7-6.1L5.9 22H3l7-8L2 2h6.2l4.2 5.6L18.2 2z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.4-.4-5c-.2-.9-.9-1.6-1.8-1.8C19 4.8 12 4.8 12 4.8s-7 0-8.8.4C2.3 5.4 1.6 6.1 1.4 7 1 8.6 1 12 1 12s0 3.4.4 5c.2.9.9 1.6 1.8 1.8 1.8.4 8.8.4 8.8.4s7 0 8.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-5 .4-5zM10 15.5v-7l6 3.5-6 3.5z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="track-record.html">Track Record</a></li>
+          <li><a href="resources.html">Resources</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get Started</h4>
+        <ul>
+          <li><a href="start-here.html">Start Here</a></li>
+          <li><a href="purpose.html">Purpose Statement</a></li>
+          <li><a href="playbook.html">Free Options Playbook</a></li>
+          <li><a href="community.html">Join the Collective</a></li>
+          <li><a href="login.html">Member Log In</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="disclaimer.html">Risk Disclaimer</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="disclaimer">Coinfish Trading Company LLC is an educational brand. Nothing on this site is financial, investment, or tax advice, and nothing here is a recommendation to buy or sell any security. Options involve substantial risk and are not suitable for every investor. Past performance does not guarantee future results. You are responsible for your own trading decisions.</p>
+    <div class="foot-bottom">
+      <span>&copy; <span id="year">2026</span> Coinfish Trading Company LLC. All rights reserved.</span>
+      <span class="foot-legal-line"><a href="disclaimer.html">Disclaimer</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span>
+      <span>Trade With Purpose.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
